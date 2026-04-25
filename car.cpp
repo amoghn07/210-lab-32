@@ -10,6 +10,7 @@ int main(){
     // declare dequeue
     deque<Car> line(2);
     cout << "Initial Queue:\n";
+    print_q(line);
 
     for (int i = 0; i < 6; i++){
         //generating random number to decide if adding or removing
@@ -29,6 +30,8 @@ int main(){
             line.front().print();
             line.pop_front();
         }
+        cout << "\nQueue:\n";
+        print_q(line);
     }
 
 
@@ -39,6 +42,13 @@ void add_Car(deque<Car> &l){
     // pushing new car to the deque
     Car n = Car();
     l.push_back(n);
+}
+
+void print_q(deque<Car> &l){
+    cout << "\t";
+    for (int i = 0; i < l.size(); i++){
+        l[i].print();
+    }
 }
 
 
