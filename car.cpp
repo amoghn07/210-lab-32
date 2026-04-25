@@ -1,5 +1,6 @@
 #include "Car.h"
 #include <deque>
+#include <string>
 using namespace std;
 
 void add_Car(deque<Car> &);
@@ -13,10 +14,20 @@ int main(){
     for (int i = 0; i < 6; i++){
         //generating random number to decide if adding or removing
         int n = rand() % (101);
-        cout << "Time"
+        string op;
+        string car;
+        cout << "Time" << i + 1;
         if (n <= 45 ) {
-            add_Car();
-
+            add_Car(line);
+            op = "Joined lane";
+            cout << " Operation: " << op << ": ";
+            line.back().print();
+        }
+        else{
+            op = "Car paid";
+            cout << " Operation: " << op << ": ";
+            line.front().print();
+            line.pop_front();
         }
     }
 
