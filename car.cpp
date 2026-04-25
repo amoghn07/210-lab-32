@@ -3,23 +3,27 @@
 #include <string>
 using namespace std;
 
+const int INITIAL_SIZE = 2;
+
 void add_Car(deque<Car> &);
 void print_q(deque<Car> &);
 
 int main(){
+    srand(time(0));
     // declare dequeue
-    deque<Car> line(2);
+    deque<Car> line(INITIAL_SIZE);
     cout << "Initial Queue:\n";
     print_q(line);
 
-    for (int i = 0; i < 6; i++){
-        //generating random number to decide if adding or removing
-        int n = rand() % (101);
+    int i = 0;
+    while (!line.empty()){
+        // random number between 0-100
+        int n = rand() % 100;
         string op;
         string car;
-        cout << "Time " << i + 1;
+        cout << "\nTime " << i + 1;
         
-        if (n <= 45 ) {
+        if (n < 45 ) {
             add_Car(line);
             op = "Joined lane";
             cout << " Operation: " << op << ": ";
@@ -32,11 +36,12 @@ int main(){
             line.pop_front();
         }
         if (line.empty()){
-            cout << "\nQueue:\n\tEmpty";
+            cout << "Queue:\n\tEmpty";
             break;
         }
         cout << "Queue:\n";
         print_q(line);
+        i++;
     }
 
 
