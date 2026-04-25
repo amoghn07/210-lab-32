@@ -17,7 +17,8 @@ int main(){
         int n = rand() % (101);
         string op;
         string car;
-        cout << "Time" << i + 1;
+        cout << "Time " << i + 1;
+        
         if (n <= 45 ) {
             add_Car(line);
             op = "Joined lane";
@@ -30,7 +31,11 @@ int main(){
             line.front().print();
             line.pop_front();
         }
-        cout << "\nQueue:\n";
+        if (line.empty()){
+            cout << "\nQueue:\n\tEmpty";
+            break;
+        }
+        cout << "Queue:\n";
         print_q(line);
     }
 
@@ -45,8 +50,8 @@ void add_Car(deque<Car> &l){
 }
 
 void print_q(deque<Car> &l){
-    cout << "\t";
     for (int i = 0; i < l.size(); i++){
+        cout << "\t";
         l[i].print();
     }
 }
