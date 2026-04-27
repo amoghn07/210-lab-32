@@ -34,19 +34,21 @@ int main(){
             int n = rand() % 100;
             string op;
             string car;
-            
+            cout << "Lane " << j+1 << ": ";
             if (n < JOIN ) {
-            add_Car(line);
-            op = "Joined lane";
-            cout << " Operation: " << op << ": ";
-            line.back().print();
+                lanes[j].push_back(Car());
+                op = "Joined lane";
+                lanes[j].back().print();
             }
             else {
-            op = "Car paid";
-            cout << " Operation: " << op << ": ";
-            line.front().print();
-            line.pop_front();
+                if (lanes[j].empty()){
+                    cout << 
+                }
+                op = "Car paid";
+                lanes[j].front().print();
+                lanes[j].pop_front();
             }
+            cout << op << ": ";
         }
     }   
     /*while (!line.empty()){
@@ -92,6 +94,10 @@ void print_q(deque<deque<Car>> &l){
         cout << "LANE " << j+1 << ": \n";
         for (int i = 0; i < l[j].size(); i++){
             cout << "\t";
+            if (l[j].empty()){
+                cout << "empty\n";
+                break;
+            }
             l[j][i].print();
         }
     }
