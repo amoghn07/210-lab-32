@@ -34,62 +34,45 @@ int main(){
             int n = rand() % 100;
             string op;
             cout << "LANE " << j+1 << ": ";
-            if (n < JOIN ) {
+            if (n < JOIN ) { //join
                 lanes[j].push_back(Car());
-                op = "Joined lane";
+                op = "Joined";
                 cout << op << ": ";
                 lanes[j].back().print();
             }
-            else if (n < JOIN + PAY) {
+            else if (n < JOIN + PAY) { //pay
                 if (lanes[j].empty()){
                     cout << "No operation\n";
                     continue;
                 }
-                op = "Car paid";
+                op = "Paid";
                 cout << op << ": ";
                 lanes[j].front().print();
                 lanes[j].pop_front();
             }
-            else{
-                int r;
-                while(r != j){
-                    //picking random lane to switch to
-                    r = rand() % 4; 
-                    lanes[r].push_back(lanes[j].back());
+            else{ //switch
+                if (lanes[j].empty()){
+                    cout << "No operation\n";
+                    continue;
                 }
+                int r = j;
+                while(r == j){
+                    //picking random lane to switch to
+                    r = rand() % LANES;
+                }
+                Car switched = lanes[j].back();
+                //pushing back of current lane to the other random one
+                lanes[r].push_back(switched);
+                op = "Switched";
+                cout << op << ": ";
+                switched.print();
+                //popping the car that switched
+                lanes[j].pop_back();
             }
             cout << endl;
         }
         print_q(lanes);
     }   
-    /*while (!line.empty()){
-        // random number between 0-100
-        int n = rand() % 100;
-        string op;
-        string car;
-        cout << "\nTime " << i + 1;
-        
-        if (n < 45 ) {
-            add_Car(line);
-            op = "Joined lane";
-            cout << " Operation: " << op << ": ";
-            line.back().print();
-        }
-        else{
-            op = "Car paid";
-            cout << " Operation: " << op << ": ";
-            line.front().print();
-            line.pop_front();
-        }
-        if (line.empty()){
-            cout << "Queue:\n\tEmpty";
-            break;
-        }
-        cout << "Queue:\n";
-        print_q(line);
-        i++;
-    }*/
-
 
     return 0;
 }
