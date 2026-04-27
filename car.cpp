@@ -4,8 +4,8 @@
 using namespace std;
 
 const int SWITCH = 15;
-const int JOIN = 39;
-const int PAY = 46;
+const int JOIN = 50;
+const int PAY = 50;
 const int INITIAL_SIZE = 2;
 const int LANES = 4;
 
@@ -28,8 +28,28 @@ int main(){
     cout << "Initial Queue:\n";
     print_q(lanes);
 
-    /*int i = 0;
-    while (!line.empty()){
+    for (int i = 0; i < 20; i++){
+        cout << "\nTime " << i+1;
+        for (int j = 0; j < LANES; j++){
+            int n = rand() % 100;
+            string op;
+            string car;
+            
+            if (n < JOIN ) {
+            add_Car(line);
+            op = "Joined lane";
+            cout << " Operation: " << op << ": ";
+            line.back().print();
+            }
+            else {
+            op = "Car paid";
+            cout << " Operation: " << op << ": ";
+            line.front().print();
+            line.pop_front();
+            }
+        }
+    }   
+    /*while (!line.empty()){
         // random number between 0-100
         int n = rand() % 100;
         string op;
