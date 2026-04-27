@@ -4,8 +4,8 @@
 using namespace std;
 
 const int SWITCH = 15;
-const int JOIN = 50;
-const int PAY = 50;
+const int JOIN = 39;
+const int PAY = 46;
 const int INITIAL_SIZE = 2;
 const int LANES = 4;
 
@@ -40,7 +40,7 @@ int main(){
                 cout << op << ": ";
                 lanes[j].back().print();
             }
-            else {
+            else if (n < JOIN + PAY) {
                 if (lanes[j].empty()){
                     cout << "No operation\n";
                     continue;
@@ -49,6 +49,14 @@ int main(){
                 cout << op << ": ";
                 lanes[j].front().print();
                 lanes[j].pop_front();
+            }
+            else{
+                int r;
+                while(r != j){
+                    //picking random lane to switch to
+                    r = rand() % 4; 
+                    lanes[r].push_back(lanes[j].back());
+                }
             }
             cout << endl;
         }
