@@ -18,10 +18,17 @@ int main(){
     //declare dequeue for the lanes 
     deque<deque<Car>> lanes(LANES);
 
-    cout << "Initial Queue:\n";
-    print_q(line);
+    //populating deque with 2 intial cars per lane with nested for loop
+    for (int i = 0; i < LANES; i++){
+        for(int j = 0; j < INITIAL_SIZE; j++){
+            lanes[i].push_back(Car());
+        }
+    }
 
-    int i = 0;
+    cout << "Initial Queue:\n";
+    print_q(lanes);
+
+    /*int i = 0;
     while (!line.empty()){
         // random number between 0-100
         int n = rand() % 100;
@@ -48,22 +55,25 @@ int main(){
         cout << "Queue:\n";
         print_q(line);
         i++;
-    }
+    }*/
 
 
     return 0;
 }
 
-void add_Car(deque<deque<Car>> &l){
+/*void add_Car(deque<deque<Car>> &l){
     // pushing new car to the deque
     Car n = Car();
     l.push_back(n);
-}
+}*/
 
 void print_q(deque<deque<Car>> &l){
-    for (int i = 0; i < l.size(); i++){
-        cout << "\t";
-        l[i].print();
+    for (int j = 0; j < LANES; j++){
+        cout << "LANE " << j+1 << ": \n";
+        for (int i = 0; i < l[j].size(); i++){
+            cout << "\t";
+            l[j][i].print();
+        }
     }
 }
 
