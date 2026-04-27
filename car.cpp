@@ -29,27 +29,30 @@ int main(){
     print_q(lanes);
 
     for (int i = 0; i < 20; i++){
-        cout << "\nTime " << i+1;
+        cout << "\nTime " << i+1 << ":\n";
         for (int j = 0; j < LANES; j++){
             int n = rand() % 100;
             string op;
-            string car;
-            cout << "Lane " << j+1 << ": ";
+            cout << "LANE " << j+1 << ": ";
             if (n < JOIN ) {
                 lanes[j].push_back(Car());
                 op = "Joined lane";
+                cout << op << ": ";
                 lanes[j].back().print();
             }
             else {
                 if (lanes[j].empty()){
-                    cout << 
+                    cout << "No operation\n";
+                    continue;
                 }
                 op = "Car paid";
+                cout << op << ": ";
                 lanes[j].front().print();
                 lanes[j].pop_front();
             }
-            cout << op << ": ";
+            cout << endl;
         }
+        print_q(lanes);
     }   
     /*while (!line.empty()){
         // random number between 0-100
@@ -83,21 +86,15 @@ int main(){
     return 0;
 }
 
-/*void add_Car(deque<deque<Car>> &l){
-    // pushing new car to the deque
-    Car n = Car();
-    l.push_back(n);
-}*/
-
 void print_q(deque<deque<Car>> &l){
     for (int j = 0; j < LANES; j++){
-        cout << "LANE " << j+1 << ": \n";
+        cout << "LANE " << j+1 << " QUEUE: \n";
+        if (l[j].empty()){
+            cout << "\tempty\n";
+            continue;
+        }
         for (int i = 0; i < l[j].size(); i++){
             cout << "\t";
-            if (l[j].empty()){
-                cout << "empty\n";
-                break;
-            }
             l[j][i].print();
         }
     }
